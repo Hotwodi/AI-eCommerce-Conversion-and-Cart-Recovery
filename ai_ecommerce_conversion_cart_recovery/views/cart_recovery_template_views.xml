@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Cart Recovery Template: Tree View -->
+    <record id="view_ecc_cart_recovery_template_tree" model="ir.ui.view">
+        <field name="name">ecc.cart.recovery.template.tree</field>
+        <field name="model">ecc.cart.recovery.template</field>
+        <field name="arch" type="xml">
+            <tree string="Recovery Templates">
+                <field name="name"/>
+                <field name="template_type"/>
+                <field name="subject"/>
+                <field name="delay_hours"/>
+                <field name="discount_code"/>
+                <field name="sent_count"/>
+                <field name="recovered_count"/>
+                <field name="active" widget="boolean_toggle"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Cart Recovery Template: Form View -->
+    <record id="view_ecc_cart_recovery_template_form" model="ir.ui.view">
+        <field name="name">ecc.cart.recovery.template.form</field>
+        <field name="model">ecc.cart.recovery.template</field>
+        <field name="arch" type="xml">
+            <form string="Recovery Template">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                            <field name="active" widget="boolean_button"
+                                   options="{'terminology': 'archive'}"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="template_type"/>
+                            <field name="subject"/>
+                            <field name="delay_hours"/>
+                            <field name="discount_code"/>
+                        </group>
+                        <group>
+                            <field name="sent_count" readonly="1"/>
+                            <field name="recovered_count" readonly="1"/>
+                            <field name="active" invisible="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Email Body">
+                            <field name="body_html" nolabel="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Cart Recovery Template: Search View -->
+    <record id="view_ecc_cart_recovery_template_search" model="ir.ui.view">
+        <field name="name">ecc.cart.recovery.template.search</field>
+        <field name="model">ecc.cart.recovery.template</field>
+        <field name="arch" type="xml">
+            <search string="Recovery Templates">
+                <field name="name"/>
+                <field name="template_type"/>
+                <filter name="filter_active" string="Active"
+                        domain="[('active', '=', True)]"/>
+                <filter name="filter_archived" string="Archived"
+                        domain="[('active', '=', False)]"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_type" string="Template Type"
+                            context="{'group_by': 'template_type'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Cart Recovery Template: Action -->
+    <record id="action_ecc_cart_recovery_template" model="ir.actions.act_window">
+        <field name="name">Recovery Templates</field>
+        <field name="res_model">ecc.cart.recovery.template</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_ecc_cart_recovery_template_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new cart recovery email template
+            </p>
+        </field>
+    </record>
+</odoo>

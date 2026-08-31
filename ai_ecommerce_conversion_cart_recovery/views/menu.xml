@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Root Menu -->
+    <menuitem id="menu_ecc_root"
+              name="eCommerce Conversion"
+              web_icon="ai_ecommerce_conversion_cart_recovery,static/description/icon.png"
+              sequence="10"/>
+
+    <!-- Submenus -->
+    <menuitem id="menu_ecc_abandoned_carts"
+              name="Abandoned Carts"
+              parent="menu_ecc_root"
+              action="action_ecc_abandoned_cart"
+              sequence="10"/>
+
+    <menuitem id="menu_ecc_conversion_funnel"
+              name="Conversion Funnel"
+              parent="menu_ecc_root"
+              action="action_ecc_conversion_funnel"
+              sequence="20"/>
+
+    <menuitem id="menu_ecc_product_recommendations"
+              name="Product Recommendations"
+              parent="menu_ecc_root"
+              action="action_ecc_product_recommendation"
+              sequence="30"/>
+
+    <menuitem id="menu_ecc_recovery_templates"
+              name="Recovery Templates"
+              parent="menu_ecc_root"
+              action="action_ecc_cart_recovery_template"
+              sequence="40"/>
+
+    <menuitem id="menu_ecc_conversion_insights"
+              name="Conversion Insights"
+              parent="menu_ecc_root"
+              action="action_ecc_conversion_insight"
+              sequence="50"/>
+</odoo>

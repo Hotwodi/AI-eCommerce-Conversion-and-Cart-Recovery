@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ecc_abandoned_cart_user,ecc.abandoned.cart.user,model_ecc_abandoned_cart,base.group_user,1,1,1,1
+access_ecc_conversion_funnel_user,ecc.conversion.funnel.user,model_ecc_conversion_funnel,base.group_user,1,1,1,1
+access_ecc_product_recommendation_user,ecc.product.recommendation.user,model_ecc_product_recommendation,base.group_user,1,1,1,1
+access_ecc_cart_recovery_template_user,ecc.cart.recovery.template.user,model_ecc_cart_recovery_template,base.group_user,1,1,1,1
+access_ecc_conversion_insight_user,ecc.conversion.insight.user,model_ecc_conversion_insight,base.group_user,1,1,1,1

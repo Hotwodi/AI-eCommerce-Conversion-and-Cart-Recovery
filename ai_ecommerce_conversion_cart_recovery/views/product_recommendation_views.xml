@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Product Recommendation: Tree View -->
+    <record id="view_ecc_product_recommendation_tree" model="ir.ui.view">
+        <field name="name">ecc.product.recommendation.tree</field>
+        <field name="model">ecc.product.recommendation</field>
+        <field name="arch" type="xml">
+            <tree string="Product Recommendations">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="product_id"/>
+                <field name="recommendation_type"/>
+                <field name="ai_score" widget="percentage"/>
+                <field name="click_rate" widget="percentage"/>
+                <field name="conversion_rate" widget="percentage"/>
+                <field name="active" widget="boolean_toggle"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Product Recommendation: Form View -->
+    <record id="view_ecc_product_recommendation_form" model="ir.ui.view">
+        <field name="name">ecc.product.recommendation.form</field>
+        <field name="model">ecc.product.recommendation</field>
+        <field name="arch" type="xml">
+            <form string="Product Recommendation">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                            <field name="active" widget="boolean_button"
+                                   options="{'terminology': 'archive'}"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="product_id"/>
+                            <field name="recommendation_type"/>
+                        </group>
+                        <group>
+                            <field name="ai_score" widget="percentage"/>
+                            <field name="click_rate" widget="percentage"/>
+                            <field name="conversion_rate" widget="percentage"/>
+                            <field name="active" invisible="1"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Product Recommendation: Search View -->
+    <record id="view_ecc_product_recommendation_search" model="ir.ui.view">
+        <field name="name">ecc.product.recommendation.search</field>
+        <field name="model">ecc.product.recommendation</field>
+        <field name="arch" type="xml">
+            <search string="Product Recommendations">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="product_id"/>
+                <filter name="filter_active" string="Active"
+                        domain="[('active', '=', True)]"/>
+                <filter name="filter_archived" string="Archived"
+                        domain="[('active', '=', False)]"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_type" string="Recommendation Type"
+                            context="{'group_by': 'recommendation_type'}"/>
+                    <filter name="group_partner" string="Customer"
+                            context="{'group_by': 'partner_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Product Recommendation: Action -->
+    <record id="action_ecc_product_recommendation" model="ir.actions.act_window">
+        <field name="name">Product Recommendations</field>
+        <field name="res_model">ecc.product.recommendation</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_ecc_product_recommendation_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new product recommendation
+            </p>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Conversion Insight: Tree View -->
+    <record id="view_ecc_conversion_insight_tree" model="ir.ui.view">
+        <field name="name">ecc.conversion.insight.tree</field>
+        <field name="model">ecc.conversion.insight</field>
+        <field name="arch" type="xml">
+            <tree string="Conversion Insights">
+                <field name="name"/>
+                <field name="period"/>
+                <field name="insight_type"/>
+                <field name="metric_value"/>
+                <field name="impact_level" widget="badge"
+                       decoration-info="impact_level == 'low'"
+                       decoration-warning="impact_level == 'medium'"
+                       decoration-danger="impact_level == 'high'"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Conversion Insight: Form View -->
+    <record id="view_ecc_conversion_insight_form" model="ir.ui.view">
+        <field name="name">ecc.conversion.insight.form</field>
+        <field name="model">ecc.conversion.insight</field>
+        <field name="arch" type="xml">
+            <form string="Conversion Insight">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="period"/>
+                            <field name="insight_type"/>
+                            <field name="metric_value"/>
+                            <field name="impact_level" widget="badge"
+                                   decoration-info="impact_level == 'low'"
+                                   decoration-warning="impact_level == 'medium'"
+                                   decoration-danger="impact_level == 'high'"/>
+                        </group>
+                    </group>
+                    <group string="AI Analysis">
+                        <field name="ai_analysis" nolabel="1"/>
+                    </group>
+                    <group string="Recommendation">
+                        <field name="recommendation" nolabel="1"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Conversion Insight: Search View -->
+    <record id="view_ecc_conversion_insight_search" model="ir.ui.view">
+        <field name="name">ecc.conversion.insight.search</field>
+        <field name="model">ecc.conversion.insight</field>
+        <field name="arch" type="xml">
+            <search string="Conversion Insights">
+                <field name="name"/>
+                <field name="period"/>
+                <field name="insight_type"/>
+                <filter name="filter_high" string="High Impact"
+                        domain="[('impact_level', '=', 'high')]"/>
+                <filter name="filter_medium" string="Medium Impact"
+                        domain="[('impact_level', '=', 'medium')]"/>
+                <filter name="filter_low" string="Low Impact"
+                        domain="[('impact_level', '=', 'low')]"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_type" string="Insight Type"
+                            context="{'group_by': 'insight_type'}"/>
+                    <filter name="group_period" string="Period"
+                            context="{'group_by': 'period'}"/>
+                    <filter name="group_impact" string="Impact Level"
+                            context="{'group_by': 'impact_level'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Conversion Insight: Action -->
+    <record id="action_ecc_conversion_insight" model="ir.actions.act_window">
+        <field name="name">Conversion Insights</field>
+        <field name="res_model">ecc.conversion.insight</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_ecc_conversion_insight_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new conversion insight
+            </p>
+        </field>
+    </record>
+</odoo>

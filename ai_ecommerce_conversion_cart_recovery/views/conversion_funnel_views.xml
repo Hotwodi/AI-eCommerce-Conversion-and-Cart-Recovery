@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Conversion Funnel: Tree View -->
+    <record id="view_ecc_conversion_funnel_tree" model="ir.ui.view">
+        <field name="name">ecc.conversion.funnel.tree</field>
+        <field name="model">ecc.conversion.funnel</field>
+        <field name="arch" type="xml">
+            <tree string="Conversion Funnels">
+                <field name="name"/>
+                <field name="period"/>
+                <field name="visitors"/>
+                <field name="product_views"/>
+                <field name="add_to_cart"/>
+                <field name="checkout_started"/>
+                <field name="orders_completed"/>
+                <field name="conversion_rate" widget="percentage"/>
+                <field name="ai_drop_off_stage"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Conversion Funnel: Form View -->
+    <record id="view_ecc_conversion_funnel_form" model="ir.ui.view">
+        <field name="name">ecc.conversion.funnel.form</field>
+        <field name="model">ecc.conversion.funnel</field>
+        <field name="arch" type="xml">
+            <form string="Conversion Funnel">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="period"/>
+                            <field name="visitors"/>
+                            <field name="product_views"/>
+                            <field name="add_to_cart"/>
+                        </group>
+                        <group>
+                            <field name="checkout_started"/>
+                            <field name="orders_completed"/>
+                            <field name="conversion_rate" widget="percentage"/>
+                            <field name="ai_drop_off_stage"/>
+                        </group>
+                    </group>
+                    <group string="AI Recommendation">
+                        <field name="ai_recommendation" nolabel="1"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Conversion Funnel: Search View -->
+    <record id="view_ecc_conversion_funnel_search" model="ir.ui.view">
+        <field name="name">ecc.conversion.funnel.search</field>
+        <field name="model">ecc.conversion.funnel</field>
+        <field name="arch" type="xml">
+            <search string="Conversion Funnels">
+                <field name="name"/>
+                <field name="period"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_period" string="Period"
+                            context="{'group_by': 'period'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Conversion Funnel: Action -->
+    <record id="action_ecc_conversion_funnel" model="ir.actions.act_window">
+        <field name="name">Conversion Funnel</field>
+        <field name="res_model">ecc.conversion.funnel</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_ecc_conversion_funnel_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new conversion funnel record
+            </p>
+        </field>
+    </record>
+</odoo>
