@@ -5,7 +5,7 @@
         <field name="name">ecc.cart.recovery.template.tree</field>
         <field name="model">ecc.cart.recovery.template</field>
         <field name="arch" type="xml">
-            <tree string="Recovery Templates">
+            <list string="Recovery Templates">
                 <field name="name"/>
                 <field name="template_type"/>
                 <field name="subject"/>
@@ -14,7 +14,7 @@
                 <field name="sent_count"/>
                 <field name="recovered_count"/>
                 <field name="active" widget="boolean_toggle"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -86,7 +86,7 @@
     <record id="action_ecc_cart_recovery_template" model="ir.actions.act_window">
         <field name="name">Recovery Templates</field>
         <field name="res_model">ecc.cart.recovery.template</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="search_view_id" ref="view_ecc_cart_recovery_template_search"/>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
