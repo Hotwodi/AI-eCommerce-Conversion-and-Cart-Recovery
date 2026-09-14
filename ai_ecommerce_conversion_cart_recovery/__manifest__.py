@@ -19,7 +19,7 @@ Recover abandoned carts and boost conversion rates with AI-driven insights:
     'author': 'SoftaiDev',
     'website': 'https://softaidev.pages.dev',
     'license': 'LGPL-3',
-    'price': 79.99,
+    'price': 80.00,
     'currency': 'USD',
     'depends': ['base', 'web', 'mail'],
     'application': True,
